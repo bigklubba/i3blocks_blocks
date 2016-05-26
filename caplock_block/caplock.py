@@ -4,7 +4,6 @@
 import os
 
 f = os.system('xset -q | grep "Caps Lock: *on" 1>/dev/null')
-print f
 if f == 0:
   status = "on"
   color = "#FF0000"
