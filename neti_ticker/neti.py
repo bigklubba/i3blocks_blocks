@@ -7,6 +7,7 @@ from lxml import html
 STOCK_PAGE = "http://www.di.se/stockwatch/net-insight/overview/"
 STOCK_NAME = "NETI"
 
+
 def get_latest_stock_value():
     """docstring for get_stock_page"""
     response = urllib2.urlopen(STOCK_PAGE)
@@ -15,6 +16,7 @@ def get_latest_stock_value():
     stock_table = tree.xpath('//table[@class="fh-table-simple-decorate"]/tr/td/text()')
     return [stock_table[2], stock_table[1]]
 
+
 def transform_to_float(string_float):
     """docstring for transform_to_float"""
     pos = string_float.index(',')
@@ -22,6 +24,7 @@ def transform_to_float(string_float):
         return float(string_float)
     else:
         return float(string_float[:pos]+'.'+string_float[pos+1:])
+
 
 def main():
     """docstring for main"""
