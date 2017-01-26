@@ -1,19 +1,28 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import urllib
-import urllib2
+from urllib import request
 from lxml import html
+# import urllib.request
+# import lxml.html
 STOCK_PAGE = "http://www.di.se/stockwatch/net-insight/overview/"
 STOCK_NAME = "NETI"
+STOCK_UP = ""
+STOCK_DOWN = ""
+STOCK_STALE = ""
+STOCK_COLOR_UP = "#A8FF00"
+STOCK_COLOR_DOWN = "#FF0000"
+STOCK_COLOR_STALE = "#A8ff00"
+X_STR = '//table[@class="fh-table-simple-decorate"]/tr/td/text()'
 
 
 def get_latest_stock_value():
     """docstring for get_stock_page"""
-    response = urllib2.urlopen(STOCK_PAGE)
+    response = request.urlopen(STOCK_PAGE)
+
     content = response.read()
-    tree = html.fromstring(content) 
-    stock_table = tree.xpath('//table[@class="fh-table-simple-decorate"]/tr/td/text()')
+    tree = html.fromstring(content)
+    stock_table = tree.xpath(X_STR)
     return [stock_table[2], stock_table[1]]
 
 
@@ -35,12 +44,21 @@ def main():
     short_text = full_text
 
     if transform_to_float(diff) < 0:
-        color = "#FF0000"
+        color = STOCK_COLOR_DOWN
+        progression = STOCK_DOWN
+    elif transform_to_float(diff) > 0:
+        color = STOCK_COLOR_UP
+        progression = STOCK_UP
     else:
-        color = "#A8FF00"
-    print full_text
-    print short_text
-    print color 
+        color = STOCK_COLOR_STALE
+        progression = STOCK_STALE
+
+    full_text = latest_value+'('+diff+')'
+    short_text = latest_value+progression
+
+    print(full_text)
+    print(short_text)
+    print(color)
 
 
 if __name__ == '__main__':
