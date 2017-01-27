@@ -10,6 +10,6 @@ if f == 0:
 else:
   status = "off"
   color = "#A8FF00"
-print status
-print status 
-print color
+print(status)
+print(status)
+print(color)
