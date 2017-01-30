@@ -19,7 +19,6 @@ ICON_FOG=""
 SYMBOL_CELSIUS="℃"
 
 WEATHER_URL="http://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${API_KEY}&units=metric"
-echo $WEATHER_URL
 
 WEATHER_INFO=$(wget -qO- "${WEATHER_URL}")
 WEATHER_MAIN=$(echo "${WEATHER_INFO}" | grep -o -e '\"main\":\"[a-Z]*\"' | awk -F ':' '{print $2}' | tr -d '"')
