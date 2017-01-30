@@ -5,9 +5,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 API_KEY="52c8551a9d71dde5a242a125e4b70235"
 
 # Check on http://openweathermap.org/find
-ID=$("${DIR}/get_city_id_from_ip.py")
+ID_FROM_IP=$("${DIR}/get_city_id_from_ip.py")
 if [ $? -eq 0 ]; then
-  CITY_ID=$ID
+  CITY_ID=$ID_FROM_IP
 else
   CITY_ID="2663536"
 fi
