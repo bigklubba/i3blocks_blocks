@@ -53,5 +53,8 @@ def main():
 
     print()
 
+    if (temp >= URGENT_HIGHER or temp <= URGENT_LOWER):
+        """ Make sure we get urgent notification to the i3bar """
+        exit(33)
 if __name__ == '__main__':
     main()
