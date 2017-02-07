@@ -4,6 +4,7 @@ import json
 from city_id_fetcher import CityIdFetcher
 from urllib import request
 
+DEFAULT_CITY_ID = 2663536
 API_KEY = "52c8551a9d71dde5a242a125e4b70235"
 URGENT_LOWER = 0
 URGENT_HIGHER = 30
@@ -26,6 +27,8 @@ def hasWeather(weather, weather_type):
 def main():
     fetcher = CityIdFetcher()
     city_id = fetcher.getCityId()
+    if (city_id == -1):
+        city_id = DEFAULT_CITY_ID
     weather_url = WEATHER_URL+str(city_id)+"&appid="+API_KEY+"&units=metric"
     response = request.urlopen(weather_url)
     content = response.read()

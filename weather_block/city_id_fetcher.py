@@ -18,7 +18,6 @@ class CityIdFetcher:
     def getCityId(self):
         """Get the city id from the current ip"""
         """if no id is found -1 will be returned"""
-
         response = request.urlopen(url)
         content = response.read()
         string_content = content.decode("utf-8")
