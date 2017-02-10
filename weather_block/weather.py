@@ -47,7 +47,7 @@ def main():
     elif (hasWeather(weather, "clear")):
         print(ICON_SUNNY+str(temp)+SYMBOL_CELSIUS)
         print(ICON_SUNNY+str(temp)+SYMBOL_CELSIUS)
-    elif (hasWeather(weather, "fog")):
+    elif (hasWeather(weather, "fog") or hasWeather(weather, "mist")):
         print(ICON_FOG+str(temp)+SYMBOL_CELSIUS)
         print(ICON_FOG+str(temp)+SYMBOL_CELSIUS)
     else:
